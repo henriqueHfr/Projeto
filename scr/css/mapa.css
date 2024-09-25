@@ -1,0 +1,83 @@
+body{
+    overflow-x: hidden;
+}
+
+.menu-aberto{
+    overflow: hidden;
+}
+.mapa{
+    margin-left: 20%;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+.rodape-principal{
+    background-color: #eee;
+    text-align: center;
+    padding: 40px 0;
+}
+.rodape-principal img{
+    box-shadow: 10px 10px 20px #000;
+}
+.copyright{
+    color: black;
+    font-size: 13px;
+    margin: 20px 0 0;
+}
+.top{
+    background-color: #eee;
+    font-size: 20px;
+    text-decoration: none;
+    color: #000;
+}
+
+
+.doador{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.paragrafo1{
+    font-size: 13px;
+}
+.doador img{
+    width: 400px;
+    height: 400px;;
+    background-color: white;
+    border-radius: 30px;
+}
+.doador p{
+    width: 500px;
+    margin-right: 30px;
+}
+
+.paragrafo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.titulo1{
+    font-size: 40px;
+    margin-bottom: 50px;
+}
+
+.doe{
+    width: 500px;
+    height: 500px;
+    background-color: #593c00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.doe p{
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 10px;
+}
