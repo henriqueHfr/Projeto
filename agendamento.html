@@ -10,7 +10,43 @@
     <link rel="stylesheet" href="scr/css/contato.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <title>Contato</title>
+    <title>Agendamento</title>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body id="body">
@@ -37,7 +73,7 @@
                                 <li><a href="endereco.html">Endereço</a></li>
                                 <li><a href="quemsomos.html">Quem Somos</a></li>
                                 <li><a href="doador.html">Doador</a></li>
-                                <li><a href="agendamento.html">Agendamento</a></li>
+                                <li><a href="contato.html">Contato</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -47,11 +83,12 @@
     </header>
     <section class="content">
         <div class="contato">
-            <h3>Formulário de contato</h3>
+            <h3>Formulário de agendamento de visitas externas.</h3>
             <form class="form" onsubmit="return handleSubmit(event)">
-                <input type="text" class="field" name="nome" placeholder="Nome" >
-                <input type="text" class="field" name="email" placeholder="Email" >
-                <textarea name="message" cols="30" rows="10" class="field" placeholder="Digite sua mensagem aqui..." ></textarea>
+                <input type="text" class="field" name="nome" placeholder="Nome">
+                <input type="text" class="field" name="email" placeholder="Email">
+                <input type="datetime-local" class="field" name="datetime-local">
+                <textarea name="message" cols="30" rows="10" class="field" placeholder="Digite sua mensagem aqui..."></textarea>
                 <input type="submit" value="Enviar" class="field">
                 <a href="https://api.whatsapp.com/send/?phone=5511995259291&text=Obrigado por entrar em contato com a ABRACC, o que posso te ajudar?&app_absent=0">
                     <input type="button" value="Nos envie uma mensagem no whatsapp" class="field2">
@@ -68,6 +105,7 @@
             <a href="#Top" class="top">Voltar</a>
         </div>
     </footer>
+    
     <div id="errorModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -91,11 +129,12 @@
             let nome = document.querySelector('input[name="nome"]').value;
             let email = document.querySelector('input[name="email"]').value;
             let message = document.querySelector('textarea[name="message"]').value;
+            let datahora = document.querySelector('input[name="datetime-local"]').value; 
 
             let errors = []; 
             if (!nome) {
                 errors.push('Por favor, preencha seu nome.');
-            }else if(nome.length<3 || nome.typeof !== 'string'){
+            } else if (nome.length < 3) { // Removido tipo
                 errors.push('Por favor, insira um nome válido.');
             }
             if (!email) {
@@ -103,20 +142,23 @@
             } else if (!validateEmail(email)) {
                 errors.push('Por favor, insira um email válido.');
             }
+            if (!datahora) {
+                errors.push('Por favor, insira a data e hora.');
+            }
             if (!message) {
                 errors.push('Por favor, digite sua mensagem.');
             }
+            
             if (errors.length > 0) {
                 showModal(errors.join('<br>')); 
                 return false;
             }
-
-            document.querySelector('input[name="nome"]').value = ""
+            document.querySelector('input[name="nome"]').value = "";
             document.querySelector('input[name="email"]').value = "";
-            document.querySelector('textarea[name="message"]').value= "";
-           
+            document.querySelector('textarea[name="message"]').value = "";
+            document.querySelector('input[name="datetime-local"]').value = ""; 
+
             alert('Formulário enviado com sucesso!');
-            
             return true;
         }
 
